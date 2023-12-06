@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Самый крутой сайт</title>
+</head>
+<body>
+<form method="post">
+    <label><input type="text" name="url"></label>
+    <button type="submit">Добавить сайт</button>
+</form>
+
+<table border=1 width=100%>
+    <tr>
+        <th> Сайт</th>
+        <th> IP адрес</th>
+        <th> Удалить</th>
+    </tr>
+    {% for key, value in dict.items() %}
+    <tr>
+        <td>{{ key|e }}</td>
+        <td>{{ value|e }}</td>
+        <td align="center">
+            <form method="post">
+                <button style="width: 100%" type="submit" name="del" value={{key}}>Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<button onclick="copyText()">Скопировать IP</button>
+<script>
+    let text = "{{IP}}";
+    const copyText = async () => {
+        await navigator.clipboard.writeText(text);
+    }
+</script>
+</body>
+</html>
